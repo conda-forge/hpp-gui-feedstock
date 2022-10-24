@@ -1,5 +1,5 @@
 {% set name = "hpp-gui" %}
-{% set version = "4.10.1" %}
+{% set version = "4.13.0" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 677d3bd69e98c0a158a2525d36baf2c0e022968bf6e3a92f3e690d5eb0689393
+  sha256: 7aeb5f1957569d78272c0441b63b045b4e105500e824ce17eee63003ffe09e28
   patches:
     - patches/qcontext_fix.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
@@ -24,32 +24,35 @@ requirements:
     - make
     - pkg-config
     - doxygen
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('mesa-dri-drivers') }}      # [linux]
-    - {{ cdt('libselinux-devel') }}      # [linux]
-    - {{ cdt('libxdamage-devel') }}      # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxfixes') }}             # [linux]
-    - {{ cdt('libxxf86vm') }}            # [linux]
-    - {{ cdt('libxext') }}               # [linux]
+    - python                              # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+    - {{ cdt('mesa-libgl-devel') }}       # [linux]
+    - {{ cdt('mesa-dri-drivers') }}       # [linux]
+    - {{ cdt('libselinux-devel') }}       # [linux]
+    - {{ cdt('libxdamage-devel') }}       # [linux]
+    - {{ cdt('libx11-devel') }}           # [linux]
+    - {{ cdt('libxfixes') }}              # [linux]
+    - {{ cdt('libxxf86vm') }}             # [linux]
+    - {{ cdt('libxext') }}                # [linux]
   host:
-    - qt
+    - qt-main
     - boost
     - boost-cpp
     - tinyxml
-    - hpp-fcl
-    - hpp-util
-    - hpp-statistics
-    - hpp-pinocchio
-    - hpp-constraints
-    - hpp-core
-    - hpp-template-corba
-    - hpp-corbaserver
-    - hpp-manipulation-corba
+    - hpp-fcl  1.8.1
+    - hpp-util  {{ version }}
+    - hpp-statistics  {{ version }}
+    - hpp-pinocchio  {{ version }}
+    - hpp-constraints  {{ version }}
+    - hpp-core  {{ version }}
+    - hpp-template-corba  {{ version }}
+    - hpp-corbaserver  {{ version }}
+    - hpp-manipulation-corba  {{ version }}
     - openscenegraph
     - openscenegraph-osgqt
     - gepetto-viewer
     - gepetto-viewer-corba
+    - omniorb-libs
     - omniorb
     - omniorbpy
     - python
@@ -57,6 +60,7 @@ requirements:
     - boost
     - boost-cpp
     - tinyxml
+    - {{ pin_compatible('omniorb-libs', max_pin='x.x.x') }}
     - omniorb
     - omniorbpy
     - python
@@ -72,7 +76,7 @@ about:
   home: https://github.com/humanoid-path-planner/{{ name }}
   license: LGPL-3.0-or-later
   license_file: COPYING
-  summary: '{{ name }} subpackage of Humanoid Path Planner suite'
+  summary: {{ name }} subpackage of Humanoid Path Planner suite
   description: |
     HPP (Humanoid Path Planner) is a collection of software packages implementing
     path planning functionalities for a humanoid robot. The core functionalities are well
@@ -84,3 +88,4 @@ about:
 extra:
   recipe-maintainers:
     - ymontmarin
+    - jcarpent
