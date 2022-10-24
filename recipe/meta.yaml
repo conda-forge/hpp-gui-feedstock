@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 7aeb5f1957569d78272c0441b63b045b4e105500e824ce17eee63003ffe09e28
-  patches:
-    - patches/qcontext_fix.patch
 
 build:
   number: 0
