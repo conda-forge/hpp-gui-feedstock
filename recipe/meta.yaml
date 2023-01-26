@@ -37,7 +37,7 @@ requirements:
     - boost
     - boost-cpp
     - tinyxml
-    - hpp-fcl  1.8.1
+    - hpp-fcl
     - hpp-util  {{ version }}
     - hpp-statistics  {{ version }}
     - hpp-pinocchio  {{ version }}
