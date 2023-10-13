@@ -10,7 +10,7 @@ source:
   sha256: 540c9a7e074f2a77b460381fb21ed519c107011d095baba7a8e2cf74abf480ce
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}
@@ -34,8 +34,8 @@ requirements:
     - {{ cdt('libxext') }}                # [linux]
   host:
     - qt-main
-    - boost
-    - boost-cpp
+    - libboost-python-devel
+    - libboost-devel
     - tinyxml
     - hpp-fcl
     - hpp-util  {{ version }}
@@ -55,8 +55,7 @@ requirements:
     - omniorbpy
     - python
   run:
-    - boost
-    - boost-cpp
+    - libboost-python-devel
     - tinyxml
     - {{ pin_compatible('omniorb-libs', max_pin='x.x.x') }}
     - omniorb
