@@ -34,8 +34,7 @@ requirements:
     - {{ cdt('libxext') }}                # [linux]
   host:
     - qt-main
-    - libboost-python-devel
-    - libboost-devel
+    - libboost-headers
     - tinyxml
     - hpp-fcl
     - hpp-util  {{ version }}
@@ -55,7 +54,6 @@ requirements:
     - omniorbpy
     - python
   run:
-    - libboost-python-devel
     - tinyxml
     - {{ pin_compatible('omniorb-libs', max_pin='x.x.x') }}
     - omniorb
