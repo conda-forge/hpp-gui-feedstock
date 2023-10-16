@@ -10,7 +10,7 @@ source:
   sha256: 540c9a7e074f2a77b460381fb21ed519c107011d095baba7a8e2cf74abf480ce
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}
@@ -27,11 +27,6 @@ requirements:
     - {{ cdt('mesa-libgl-devel') }}       # [linux]
     - {{ cdt('mesa-dri-drivers') }}       # [linux]
     - {{ cdt('libselinux-devel') }}       # [linux]
-    - {{ cdt('libxdamage-devel') }}       # [linux]
-    - {{ cdt('libx11-devel') }}           # [linux]
-    - {{ cdt('libxfixes') }}              # [linux]
-    - {{ cdt('libxxf86vm') }}             # [linux]
-    - {{ cdt('libxext') }}                # [linux]
   host:
     - qt-main
     - libboost-headers
