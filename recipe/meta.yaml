@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 702965e403c024eb1300f874a47298b6fdca926822c68ce2140c1a61b326a761
+  patches:
+  - patches/vec3s.patch
 
 build:
   number: 0
