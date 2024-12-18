@@ -1,0 +1,24 @@
+From e3d27f37848fe96f5077549be402ef6a6f12e65c Mon Sep 17 00:00:00 2001
+From: Yann Mont-Marin <yann.montmarin@gmail.com>
+Date: Wed, 18 Dec 2024 18:19:11 +0100
+Subject: [PATCH] Vec3f-->Vec3s
+
+---
+ plugins/coal/node.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git plugins/coal/node.cc plugins/coal/node.cc
+index 7ebf170..ea27915 100644
+--- plugins/coal/node.cc
++++ plugins/coal/node.cc
+@@ -43,7 +43,7 @@ void BVHDisplay::init(coal::SplitMethodType splitMethod) {
+
+   BVHPtr_t bvh(new BVH_t);
+   bvh->bv_splitter.reset(new BVSplitter<BoundingVolume>(splitMethod));
+-  loadPolyhedronFromResource(filename_, Vec3f(1, 1, 1), bvh);
++  loadPolyhedronFromResource(filename_, Vec3s(1, 1, 1), bvh);
+
+   recursiveBuildTree(*bvh, 0, 0);
+
+--
+2.25.1
