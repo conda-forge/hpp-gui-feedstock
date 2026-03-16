@@ -10,7 +10,7 @@ source:
   sha256: 4eab4e74e6b6d2d33e0d5f4dff4cc0aab7604eff4fefc1f8299d0275c5b68efc
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or python_impl == 'pypy']
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}
@@ -26,9 +26,6 @@ requirements:
     - python                              # [build_platform != target_platform]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - omniorb                             # [build_platform != target_platform]
-    - {{ cdt('mesa-libgl-devel') }}       # [linux]
-    - {{ cdt('mesa-dri-drivers') }}       # [linux]
-    - {{ cdt('libselinux-devel') }}       # [linux]
   host:
     - qt-main
     - libboost-headers
@@ -52,6 +49,7 @@ requirements:
     - python
     - qhull
     - qhull-static
+    - libgl-devel                         # [linux]
   run:
     - tinyxml
     - {{ pin_compatible('omniorb-libs', max_pin='x.x.x') }}
